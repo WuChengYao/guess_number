@@ -63,8 +63,8 @@
             var b = parseFloat(oNumber);
             var oDataBig = document.querySelector('.data_big');
             var oDataSmall = document.querySelector('.data_small');
-            var oRound = document.querySelector('.round').value;
-            var c = parseFloat(oRound);
+            // var oRound = document.querySelector('.round').value;
+            // var c = parseFloat(oRound);
 
             if (isNaN(a)) {
                 alert('請輸入數字');
@@ -75,16 +75,16 @@
                     parent.location.reload();
                 } else if (a > b) {
                     oDataBig.innerHTML += a + `<div>比答案大!!</div>`;
-                    c++;
+                    // c++;
                     console.log(typeof (c));
                 } else if (a < b) {
                     oDataSmall.innerHTML += a + `<div>比答案小!!</div>`;
-                    c++;
+                    // c++;
                 }
             }
         }
-        var number = document.querySelector('.ko');
-        number.innerHTML = '答案:' + oNumber;
+        // var number = document.querySelector('.ko');
+        // number.innerHTML = '答案:' + oNumber;
     </script>
 </body>
 
