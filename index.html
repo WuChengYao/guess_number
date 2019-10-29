@@ -7,9 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         .all {
             width: 50%;
             margin: 0 auto;
+        }
+
+        .ipt {
+            padding: 3px;
+        }
+
+        .btn {
+            background-color: blue;
+            color: white;
+            border: 1px solid blue;
+            border-radius: 3px;
         }
 
         .aaa {
@@ -23,17 +38,18 @@
 
 <body>
     <div class="all">
-        <input class="ipt" type="number" value="">
+        <h1>猜數字遊戲</h1>
+        <input class="ipt" type="text" value="請輸入1~100數字">
         <button class="btn">猜猜猜</button>
         <div class="aaa">
             <div class="data_big"></div>
             <div class="data_small"></div>
         </div>
-        <br><br><br><br><br><br>
-        <!-- 回合：<br> -->
-        <!-- <input class="round" type="text" value="1" readonly> -->
+        <!-- <br><br><br><br><br><br>
+        回合：<br>
+        <input class="round" type="text" value="1" readonly>
         <br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <!-- <p class="ko"></p> -->
+        <p class="ko"></p> -->
     </div>
 
 
@@ -49,19 +65,22 @@
             var oDataSmall = document.querySelector('.data_small');
             var oRound = document.querySelector('.round').value;
             var c = parseFloat(oRound);
-            console.log(oRound);
 
-            if (a == b) {
-                alert('答對!!');
-                alert('重開一局!!');
-                parent.location.reload();
-            } else if (a > b) {
-                oDataBig.innerHTML += a + `<div>比答案大!!</div>`;
-                // c++;
-                console.log(oRound);
-            } else if (a < b) {
-                oDataSmall.innerHTML += a + `<div>比答案小!!</div>`;
-                // c++;
+            if (isNaN(a)) {
+                alert('請輸入數字');
+            } else {
+                if (a == b) {
+                    alert('答對!!');
+                    alert('重開一局!!');
+                    parent.location.reload();
+                } else if (a > b) {
+                    oDataBig.innerHTML += a + `<div>比答案大!!</div>`;
+                    c++;
+                    console.log(typeof (c));
+                } else if (a < b) {
+                    oDataSmall.innerHTML += a + `<div>比答案小!!</div>`;
+                    c++;
+                }
             }
         }
         var number = document.querySelector('.ko');
