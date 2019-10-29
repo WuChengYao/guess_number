@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .all {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .aaa {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all">
+        <input class="ipt" type="number" value="">
+        <button class="btn">猜猜猜</button>
+        <div class="aaa">
+            <div class="data_big"></div>
+            <div class="data_small"></div>
+        </div>
+        <br><br><br><br><br><br>
+        <!-- 回合：<br> -->
+        <input class="round" type="text" value="1" readonly>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!-- <p class="ko"></p> -->
+    </div>
+
+
+    <script>
+        var oIpt = document.querySelector('.ipt');
+        var oBtn = document.querySelector('.btn');
+        var oNumber = Math.floor((Math.random() * 100) + 1);
+
+        oBtn.onclick = function () {
+            var a = parseFloat(oIpt.value);
+            var b = parseFloat(oNumber);
+            var oDataBig = document.querySelector('.data_big');
+            var oDataSmall = document.querySelector('.data_small');
+            var oRound = document.querySelector('.round').value;
+            var c = parseFloat(oRound);
+            console.log(oRound);
+
+            if (a == b) {
+                alert('答對!!');
+                alert('重開一局!!');
+                parent.location.reload();
+            } else if (a > b) {
+                oDataBig.innerHTML += a + `<div>比答案大!!</div>`;
+                // c++;
+                console.log(oRound);
+            } else if (a < b) {
+                oDataSmall.innerHTML += a + `<div>比答案小!!</div>`;
+                // c++;
+            }
+        }
+        var number = document.querySelector('.ko');
+        number.innerHTML = '答案:' + oNumber;
+    </script>
+</body>
+
+</html>
