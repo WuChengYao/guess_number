@@ -22,16 +22,31 @@
 
         .btn {
             background-color: blue;
+            font-size: 18px;
             color: white;
             border: 1px solid blue;
+            box-shadow: 2px -1px 3px rgb(0, 38, 255);
             border-radius: 3px;
         }
 
         .aaa {
             width: 80%;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
+            padding: 10px 0;
+        }
+
+        .xxx {
+            padding-bottom: 10px;
+        }
+
+        .reset {
+            background: linear-gradient(#e63f00, #c0f);
+            border: 0px;
+            box-shadow: 2px -1px 3px black;
+            border-radius: 3px;
+            font-size: 20px;
+            color: white;
+            text-shadow: 0px 0px 3px white;
+            display: none;
         }
     </style>
 </head>
@@ -39,40 +54,56 @@
 <body>
     <div class="all">
         <h1>猜數字遊戲</h1>
-        <input class="ipt" type="text" value="請輸入1~100數字">
+        <p>請猜1~99999數字</p>
+        <input class="ipt" type="text" value="">
         <button class="btn">猜猜猜</button>
-        <div class="aaa">
-            <div class="data_big"></div>
-            <div class="data_small"></div>
-        </div>
+        <div class="aaa"></div>
+        <div class="xxx"></div>
+        <button class="reset">重開一局</button>
     </div>
 
 
     <script>
         var oIpt = document.querySelector('.ipt');
         var oBtn = document.querySelector('.btn');
-        var oNumber = Math.floor((Math.random() * 100) + 1);
+        var oxxx = document.querySelector('.xxx');
+        var oNumber = Math.floor((Math.random() * 99999) + 1);
+        var ostate = 1;
+        var oend = 99999;
+        var oRound = 0;
 
         oBtn.onclick = function () {
             var a = parseFloat(oIpt.value);
             var b = parseFloat(oNumber);
-            var oDataBig = document.querySelector('.data_big');
-            var oDataSmall = document.querySelector('.data_small');
+            var oText = document.querySelector('.aaa');
+            var oOpenBut = document.querySelector('.reset');
 
             if (isNaN(a)) {
-                alert('請輸入數字');
+                oText.innerHTML = `請輸入數字!!`;
             } else {
                 if (a == b) {
-                    alert('答對!!');
-                    alert('重開一局!!');
-                    parent.location.reload();
+                    oRound++;
+                    oText.innerHTML = `答對!!`;
+                    oxxx.innerHTML = `共猜了${oRound}次`;
+                    oIpt.style.display = 'none';
+                    oBtn.style.display = 'none';
+                    oOpenBut.style.display = 'block';
+                    oOpenBut.onclick = function () {
+                        location.reload();
+                    }
+
                 } else if (a > b) {
-                    oDataBig.innerHTML += a + `<div>比答案大!!</div>`;
-                    // c++;
-                    console.log(typeof (c));
+                    oend = a;
+                    oText.innerHTML = `猜錯囉!答案於${ostate}~${oend}之間`;
+                    oRound++;
+                    oxxx.innerHTML = `目前猜${oRound}次`;
+                    console.log(oRound);
                 } else if (a < b) {
-                    oDataSmall.innerHTML += a + `<div>比答案小!!</div>`;
-                    // c++;
+                    ostate = a;
+                    oText.innerHTML = `猜錯囉!!答案於${ostate}~${oend}之間`;
+                    oRound++;
+                    oxxx.innerHTML = `目前猜${oRound}次`;
+                    console.log(oRound);
                 }
             }
         }
