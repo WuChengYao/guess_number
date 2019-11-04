@@ -5,52 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .all {
-            width: 50%;
-            margin: 0 auto;
-        }
-
-        .ipt {
-            padding: 3px;
-        }
-
-        .btn {
-            background-color: blue;
-            font-size: 18px;
-            color: white;
-            border: 1px solid blue;
-            box-shadow: 2px -1px 3px rgb(0, 38, 255);
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .aaa {
-            width: 80%;
-            padding: 10px 0;
-        }
-
-        .xxx {
-            padding-bottom: 10px;
-        }
-
-        .reset {
-            background: linear-gradient(#e63f00, #c0f);
-            border: 0px;
-            box-shadow: 2px -1px 3px black;
-            border-radius: 3px;
-            font-size: 20px;
-            color: white;
-            text-shadow: 0px 0px 3px white;
-            cursor: pointer;
-            display: none;
-        }
-    </style>
+    <title>簡易猜數字遊戲</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -65,51 +21,7 @@
     </div>
 
 
-    <script>
-        var oIpt = document.querySelector('.ipt');
-        var oBtn = document.querySelector('.btn');
-        var oxxx = document.querySelector('.xxx');
-        var oNumber = Math.floor((Math.random() * 99999) + 1);
-        var ostate = 1;
-        var oend = 99999;
-        var oRound = 0;
-
-        oBtn.onclick = function () {
-            var b = parseFloat(oNumber);
-            var oText = document.querySelector('.aaa');
-            var oOpenBut = document.querySelector('.reset');
-
-            if (isNaN(oIpt.value)) {
-                oText.innerHTML = `請輸入數字!!`;
-            } else {
-                var a = parseFloat(oIpt.value);
-                if (a == b) {
-                    oRound++;
-                    oText.innerHTML = `答對!!`;
-                    oxxx.innerHTML = `共猜了${oRound}次`;
-                    oIpt.style.display = 'none';
-                    oBtn.style.display = 'none';
-                    oOpenBut.style.display = 'block';
-                    oOpenBut.onclick = function () {
-                        location.reload();
-                    }
-
-                } else if (a > b) {
-                    oend = a;
-                    oText.innerHTML = `猜錯囉!答案於${ostate}~${oend}之間`;
-                    oRound++;
-                    oxxx.innerHTML = `目前猜${oRound}次`;
-                    console.log(oRound);
-                } else if (a < b) {
-                    ostate = a;
-                    oText.innerHTML = `猜錯囉!!答案於${ostate}~${oend}之間`;
-                    oRound++;
-                    oxxx.innerHTML = `目前猜${oRound}次`;
-                    console.log(oRound);
-                }
-            }
-        }
-    </script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
